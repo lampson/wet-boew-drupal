@@ -18,19 +18,6 @@ function wetkit_wysiwyg_filter_default_formats() {
     'status' => '1',
     'weight' => '-9',
     'filters' => array(
-      'image_resize_filter' => array(
-        'weight' => '-50',
-        'status' => '1',
-        'settings' => array(
-          'link' => 0,
-          'link_class' => '',
-          'link_rel' => '',
-          'image_locations' => array(
-            'local' => 'local',
-            'remote' => 'remote',
-          ),
-        ),
-      ),
       'wysiwyg' => array(
         'weight' => '-49',
         'status' => '1',
@@ -116,11 +103,12 @@ th[abbr|align<center?char?justify?left?right|axis|bgcolor|char|charoff|class|col
 thead[align<center?char?justify?left?right|char|charoff|class|dir<ltr?rtl|id|lang|style|title|valign<baseline?bottom?middle?top],
 time[class|datetime|dir<ltr?rtl|id|lang|pubdate|style|title],
 tr[abbr|align<center?char?justify?left?right|bgcolor|char|charoff|class|rowspan|dir<ltr?rtl|id|lang|style|title|valign<baseline?bottom?middle?top],
+track[class|dir<ltr?rtl|data-type|id|kind|lang|src|style|title|type],
 tt[class|dir<ltr?rtl|id|lang|style|title],
 u[class|dir<ltr?rtl|id|lang|style|title],
 ul[class|compact<compact|dir<ltr?rtl|id|lang|style|title|type],
 var[class|dir<ltr?rtl|height|id|lang|style],
-video[autoplay|class|controls|dir<ltr?rtl|id|lang|loop|preload|poster|src|style|title|width],
+video[autoplay|class|controls|dir<ltr?rtl|id|lang|loop|preload|poster|src|style|title|height|width],
 wbr[class|dir<ltr?rtl|id|lang|style|title]',
           'allow_comments' => '1',
           'nofollow_policy' => 'disabled',
@@ -382,19 +370,6 @@ wbr[class|dir<ltr?rtl|id|lang|style|title]',
     'status' => '1',
     'weight' => '-10',
     'filters' => array(
-      'image_resize_filter' => array(
-        'weight' => '-50',
-        'status' => '1',
-        'settings' => array(
-          'link' => 0,
-          'link_class' => '',
-          'link_rel' => '',
-          'image_locations' => array(
-            'local' => 'local',
-            'remote' => 'remote',
-          ),
-        ),
-      ),
       'wysiwyg' => array(
         'weight' => '-49',
         'status' => '1',
@@ -480,11 +455,12 @@ th[abbr|align<center?char?justify?left?right|axis|bgcolor|char|charoff|class|col
 thead[align<center?char?justify?left?right|char|charoff|class|dir<ltr?rtl|id|lang|style|title|valign<baseline?bottom?middle?top],
 time[class|datetime|dir<ltr?rtl|id|lang|pubdate|style|title],
 tr[abbr|align<center?char?justify?left?right|bgcolor|char|charoff|class|rowspan|dir<ltr?rtl|id|lang|style|title|valign<baseline?bottom?middle?top],
+track[class|dir<ltr?rtl|data-type|id|kind|lang|src|style|title|type],
 tt[class|dir<ltr?rtl|id|lang|style|title],
 u[class|dir<ltr?rtl|id|lang|style|title],
 ul[class|compact<compact|dir<ltr?rtl|id|lang|style|title|type],
 var[class|dir<ltr?rtl|height|id|lang|style],
-video[autoplay|class|controls|dir<ltr?rtl|id|lang|loop|preload|poster|src|style|title|width],
+video[autoplay|class|controls|dir<ltr?rtl|id|lang|loop|preload|poster|src|style|title|height|width],
 wbr[class|dir<ltr?rtl|id|lang|style|title]',
           'allow_comments' => '1',
           'nofollow_policy' => 'disabled',

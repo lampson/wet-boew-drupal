@@ -1,14 +1,10 @@
 <?php
 /**
  * @file
- * Code for the WetKit MetaTags Dublin Core (HTML5) feature.
+ * Metatag integration for the wetkit_metatag module.
  */
 
 include_once 'wetkit_metatag.features.inc';
-/**
- * @file
- * Metatag integration for the wetkit_metatag module.
- */
 
 /**
  * Implements hook_apps_app_info().
@@ -20,18 +16,17 @@ function wetkit_metatag_apps_app_info() {
 }
 
 /**
- * Configuration Form for WetKit Metatags
+ * Configuration Form for WetKit Metatags.
  */
 function wetkit_metatag_configure_form($form, &$form_state) {
   $form = array();
-  
-  $form['wetkit_metatag'] = array (
+
+  $form['wetkit_metatag'] = array(
     '#title' => 'Metatag Settings',
     '#type'  => 'fieldset',
     '#collapsible' => 'true',
-    '#collapsed'   => 'true',
   );
-  
+
   $form['wetkit_metatag']['wetkit_metatag_creator'] = array(
     '#title' => t('Metatags for Creator'),
     '#type' => t('textfield'),
@@ -39,6 +34,15 @@ function wetkit_metatag_configure_form($form, &$form_state) {
     '#size' => 50,
     '#default_value' => variable_get('wetkit_metatag_creator'),
     '#description' => t('Metatags for Creator'),
+  );
+
+  $form['wetkit_metatag']['wetkit_metatag_subject_scheme'] = array(
+    '#title' => t('Metatag Attribute for Subject (Scheme)'),
+    '#type' => t('textfield'),
+    '#maxlength' => 255,
+    '#size' => 50,
+    '#default_value' => variable_get('wetkit_metatag_subject_scheme'),
+    '#description' => t('Metatag Attribute for Subject (Scheme)'),
   );
 
   $form['#submit'][] = 'wetkit_metatag_configure_form_submit';
@@ -49,9 +53,9 @@ function wetkit_metatag_configure_form($form, &$form_state) {
 /**
  * Handle submission of the WetKit Metatag configuration page.
  *
- * @param type $form
+ * @param array $form
  *   Nested array of form elements that comprise the form.
- * @param type $form_state
+ * @param array $form_state
  *   A keyed array containing the current state of the form.
  */
 function wetkit_metatag_configure_form_submit($form, &$form_state) {
@@ -69,7 +73,13 @@ function wetkit_metatag_configure_form_submit($form, &$form_state) {
 
   // Don't clear cache_form - in-progress form submissions may break.
   // Ordered so clearing the page cache will always be the last action.
-  $core = array('cache', 'cache_path', 'cache_filter', 'cache_bootstrap', 'cache_page');
+  $core = array(
+    'cache',
+    'cache_path',
+    'cache_filter',
+    'cache_bootstrap',
+    'cache_page',
+  );
   $cache_tables = array_merge(module_invoke_all('flush_caches'), $core);
   foreach ($cache_tables as $table) {
     cache_clear_all('*', $table, TRUE);
@@ -112,7 +122,7 @@ function theme_wetkit_metatag($variables) {
  * Implements hook_form_alter().
  */
 function wetkit_metatag_form_alter(&$form, &$form_state, $form_id) {
-   // Only include on node add/edit forms.
+  // Only include on node add/edit forms.
   if (!empty($form['#node_edit_form'])) {
 
     // Create a fieldset that will be included in the vertical tab.
@@ -128,7 +138,7 @@ function wetkit_metatag_form_alter(&$form, &$form_state, $form_id) {
       '#group' => 'additional_settings',
       '#attached' => array(
         'js' => array(
-          'vertical-tabs' => drupal_get_path('module', 'wetkit_metatag') . '/vertical_tabs_metatag.js',
+          'vertical-tabs' => drupal_get_path('module', 'wetkit_metatag') . '/js/vertical_tabs_metatag.js',
         ),
       ),
     );
@@ -146,16 +156,16 @@ function wetkit_metatag_form_alter(&$form, &$form_state, $form_id) {
       '#group' => 'additional_settings',
       '#attached' => array(
         'js' => array(
-          'vertical-tabs' => drupal_get_path('module', 'wetkit_metatag') . '/vertical_tabs_metatag.js',
+          'vertical-tabs' => drupal_get_path('module', 'wetkit_metatag') . '/js/vertical_tabs_metatag.js',
         ),
       ),
     );
 
-    // Move custom metatags into different Vertical Tabs
+    // Move custom metatags into different Vertical Tabs.
     $form['vertical_tabs_wetkit']['dublin-core'] = $form['metatags']['dublin-core'];
     $form['vertical_tabs_metatags_advanced']['advanced'] = $form['metatags']['advanced'];
 
-    // Unset form content that is not needed
+    // Unset form content that is not needed.
     unset($form['vertical_tabs_wetkit']['dublin-core']['#type']);
     unset($form['vertical_tabs_metatags_advanced']['advanced']['#type']);
     unset($form['metatags']['advanced']);

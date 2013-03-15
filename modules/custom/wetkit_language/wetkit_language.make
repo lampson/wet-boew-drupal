@@ -9,15 +9,16 @@ projects[entity_translation][version] = 1.x-dev
 projects[entity_translation][type] = module
 projects[entity_translation][subdir] = contrib
 projects[entity_translation][download][type] = git
-projects[entity_translation][download][revision] = 533c473
+projects[entity_translation][download][revision] = 8a78bf9
 projects[entity_translation][download][branch] = 7.x-1.x
 
 projects[title][version] = 1.x-dev
 projects[title][type] = module
 projects[title][subdir] = contrib
 projects[title][download][type] = git
-projects[title][download][revision] = ef3d5a14
+projects[title][download][revision] = 7fc9dbe
 projects[title][download][branch] = 7.x-1.x
+projects[title][patch][1907078] = http://drupal.org/files/undefined_index_field_name-1907078-2.patch
 
 projects[i18n][version] = 1.7
 projects[i18n][subdir] = contrib
@@ -56,9 +57,9 @@ projects[potx][subdir] = contrib
 projects[stringoverrides][version] = 1.8
 projects[stringoverrides][subdir] = contrib
 
-projects[variable][version] = 1.x-dev
+projects[variable][version] = 2.x-dev
 projects[variable][type] = module
 projects[variable][subdir] = contrib
 projects[variable][download][type] = git
 projects[variable][download][revision] = 651a3fb
-projects[variable][download][branch] = 7.x-1.x
+projects[variable][download][branch] = 7.x-2.x

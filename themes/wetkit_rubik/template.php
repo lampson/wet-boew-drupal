@@ -1,30 +1,38 @@
 <?php
 
 /**
+ * @file
+ * Template.php file for wetkit_rubik.
+ */
+
+/**
  * Preprocessor for theme('page').
  */
 function wetkit_rubik_preprocess_html(&$vars) {
 
-  drupal_add_css(drupal_get_path('theme', 'wetkit_rubik') . '/css/lt-ie9.css', array('browsers' => array('IE' => 'lte IE 8', '!IE' => FALSE), 'group' => CSS_THEME, 'every_page' => TRUE, 'preprocess' => FALSE, 'weight' => 9999));
-  
+  drupal_add_css(drupal_get_path('theme', 'wetkit_rubik') . '/css/lt-ie9.css', array(
+    'browsers' => array('IE' => 'lte IE 8', '!IE' => FALSE),
+    'group' => CSS_THEME,
+    'every_page' => TRUE,
+    'preprocess' => FALSE,
+    'weight' => 9999,
+  ));
   $vars['classes_array'][] = 'wetkit_rubik';
-
-  if(isset($vars['page']['sidebar_first'])) {
+  if (isset($vars['page']['sidebar_first'])) {
     $vars['classes_array'][] = 'wetkit-rubik-sidebar-first';
   }
-  if(isset($vars['page']['sidebar_second'])) {
+  if (isset($vars['page']['sidebar_second'])) {
     $vars['classes_array'][] = 'wetkit-rubik-sidebar-second';
   }
-  if(isset($vars['page']['sidebar_first']) && isset($vars['page']['sidebar_second'])) {
+  if (isset($vars['page']['sidebar_first']) && isset($vars['page']['sidebar_second'])) {
     $vars['classes_array'][] = 'wetkit-rubik-two-sidebars';
   }
-  if((!isset($vars['page']['sidebar_first']) && isset($vars['page']['sidebar_second'])) || (isset($vars['page']['sidebar_first']) && !isset($vars['page']['sidebar_second']))) {
+  if ((!isset($vars['page']['sidebar_first']) && isset($vars['page']['sidebar_second'])) || (isset($vars['page']['sidebar_first']) && !isset($vars['page']['sidebar_second']))) {
     $vars['classes_array'][] = 'wetkit-rubik-one-sidebar';
   }
-  if(!isset($vars['page']['sidebar_first']) && !isset($vars['page']['sidebar_second'])) {
+  if (!isset($vars['page']['sidebar_first']) && !isset($vars['page']['sidebar_second'])) {
     $vars['classes_array'][] = 'wetkit-rubik-no-sidebars';
   }
-
   if (_wetkit_rubik_has_tabs()) {
     $vars['classes_array'][] = 'with-local-tasks';
   }
@@ -40,8 +48,8 @@ function wetkit_rubik_preprocess_page(&$vars) {
   // Process local tasks. Only do this processing if the current theme is
   // indeed Rubik. Subthemes must reimplement this call.
   global $theme;
-  
-  // Custom Logic Based on Theme Selection (Internet, Intranet or Base)
+
+  // Custom Logic Based on Theme Selection (Internet, Intranet or Base).
   if (variable_get('wetkit_wetboew_theme', 0) == 2) {
     $theme_prefix = 'base';
   }
@@ -60,14 +68,14 @@ function wetkit_rubik_preprocess_page(&$vars) {
 
   // Add body class when we have local tasks.
   // Since we don't have access to body classes here
-  //  set a flag for preprocess_html().
+  // set a flag for preprocess_html().
   if (!empty($vars['primary_local_tasks'])) {
     _wetkit_rubik_has_tabs(TRUE);
   }
 
   // Set a page icon for dashboard links.
   if (empty($vars['page_icon_class'])) {
-    $vars['page_icon_class'] = ($item = menu_get_item()) ? implode(' ' , _wetkit_rubik_icon_classes($item['href'])) : '';
+    $vars['page_icon_class'] = ($item = menu_get_item()) ? implode(' ', _wetkit_rubik_icon_classes($item['href'])) : '';
   }
 }
 
@@ -127,12 +135,13 @@ function wetkit_rubik_preprocess_help(&$vars) {
 }
 
 /**
- * Helper function used to pass a value from preprocess_page() to preprocess_html().
+ * Helper function used to pass a value from preprocess_page().
+ * to preprocess_html().
  */
 function _wetkit_rubik_has_tabs($val = NULL) {
   $vars = &drupal_static(__FUNCTION__, array());
 
-  // If a new value has been passed
+  // If a new value has been passed.
   if ($val) {
     $vars = $val;
   }
@@ -142,8 +151,7 @@ function _wetkit_rubik_has_tabs($val = NULL) {
 
 /**
  * Generate an icon class from a path.
- * Modified version of _rubik_icon_classes() that allows icon classes for
- * paths with "dashboard" prefixes.
+ * Modified version of _rubik_icon_classes().
  */
 function _wetkit_rubik_icon_classes($path) {
   $classes = array();
@@ -151,9 +159,9 @@ function _wetkit_rubik_icon_classes($path) {
   if ($args[0] === 'dashboard') {
     // Add a class specifically for the current path that allows non-cascading
     // style targeting.
-    $classes[] = 'path-'. str_replace('/', '-', implode('/', $args)) . '-';
+    $classes[] = 'path-' . str_replace('/', '-', implode('/', $args)) . '-';
     while (count($args)) {
-      $classes[] = drupal_html_class('path-'. str_replace('/', '-', implode('/', $args)));
+      $classes[] = drupal_html_class('path-' . str_replace('/', '-', implode('/', $args)));
       array_pop($args);
     }
     return $classes;
@@ -164,10 +172,10 @@ function _wetkit_rubik_icon_classes($path) {
  * Preprocess function.
  * Adds classes for icons in Taxonomy vocabulary overview page.
  *
- * @see theme_taxonomy_overview_vocabularies()
+ * @see theme_taxonomy_overview_vocabularies().
  */
 function wetkit_rubik_preprocess_taxonomy_overview_vocabularies(&$variables) {
-  $form =& $variables['form'];
+  $form = &$variables['form'];
 
   foreach (element_children($form) as $key) {
     if (isset($form[$key]['name'])) {
@@ -196,10 +204,10 @@ function wetkit_rubik_preprocess_taxonomy_overview_vocabularies(&$variables) {
  * Preprocess function.
  * Adds classes for icons in Taxonomy term overview page.
  *
- * @see theme_taxonomy_overview_terms()
+ * @see theme_taxonomy_overview_terms().
  */
 function wetkit_rubik_preprocess_taxonomy_overview_terms(&$variables) {
-  $form =& $variables['form'];
+  $form = &$variables['form'];
 
   foreach (element_children($form) as $key) {
     if (isset($form[$key]['#term'])) {
@@ -223,13 +231,13 @@ function wetkit_rubik_breadcrumb($vars) {
     $item = menu_get_item();
     $end = end($vars['breadcrumb']);
     if ($end && strip_tags($end) !== $item['title']) {
-      $vars['breadcrumb'][] = "<strong>". check_plain($item['title']) ."</strong>";
+      $vars['breadcrumb'][] = "<strong>" . check_plain($item['title']) . "</strong>";
     }
   }
 
   // Optional: Add the site name to the front of the stack.
   if (!empty($vars['prepend'])) {
-    $site_name = empty($vars['breadcrumb']) ? "<strong>". check_plain(variable_get('site_name', '')) ."</strong>" : l(variable_get('site_name', ''), '<front>', array('purl' => array('disabled' => TRUE)));
+    $site_name = empty($vars['breadcrumb']) ? "<strong>" . check_plain(variable_get('site_name', '')) . "</strong>" : l(variable_get('site_name', ''), '<front>', array('purl' => array('disabled' => TRUE)));
     array_unshift($vars['breadcrumb'], $site_name);
   }
 
@@ -239,12 +247,12 @@ function wetkit_rubik_breadcrumb($vars) {
   foreach ($vars['breadcrumb'] as $link) {
     if ($count == $array_size - 1) {
       if (isset($link)) {
-        $output .= "<span class='breadcrumb-link breadcrumb-depth-{$depth} last'>{$link}</span>"; 
+        $output .= "<span class='breadcrumb-link breadcrumb-depth-{$depth} last'>{$link}</span>";
       }
     }
     else {
       if (isset($link)) {
-        $output .= "<span class='breadcrumb-link breadcrumb-depth-{$depth}'>{$link}</span>"; 
+        $output .= "<span class='breadcrumb-link breadcrumb-depth-{$depth}'>{$link}</span>";
       }
     }
     $depth++;

@@ -22,7 +22,7 @@
   ; Web Usability Theme - Grids
   ;stylesheets[all][] = wet-boew/grids/css/responsive-1200-min.css
   ;stylesheets[all][] = wet-boew/grids/css/responsive-768-min.css
-  ;stylesheets[all][] = wet-boew/grids/css/responsive-min.css  
+  ;stylesheets[all][] = wet-boew/grids/css/responsive-min.css
   ;stylesheets[all][] = wet-boew/grids/css/util-min.css
 
   ; Web Usability Theme - JS
@@ -120,7 +120,7 @@
   plugins[page_layout][layouts] = custom_layouts
 
   ; Panels Module layouts
-  plugins[panels][layouts] = custom_panels
+  ; plugins[panels][layouts] = custom_panels
 
 
 ;----------// Site Features
@@ -141,7 +141,12 @@
   ; Web Usability
   settings[skip_link_content_anchor] = wb-cont
   settings[skip_link_nav_anchor]     = wb-nav
+  settings[render_mb_main_link]      = 0
+  settings[render_nolink]            = 0
   settings[wetkit_sub_site]          = 0
+  settings[alternate_site_url]       = ''
+  settings[search_indexing_start]    = ''
+  settings[search_indexing_stop]     = ''
 
   ; Layout settings - Standard layout
   settings[bigscreen_layout]         = 'three_col_grail'
@@ -436,10 +441,3 @@
 
   ; Custom CSS
   settings[custom_css] = ''
-
-; Information added by drupal.org packaging script on 2012-07-31
-version = "7.x-3.0"
-core = "7.x"
-project = "adaptivetheme"
-datestamp = "1343717778"
-

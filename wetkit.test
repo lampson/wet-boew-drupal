@@ -4,16 +4,26 @@
  * wetkit.test
  */
 
+/**
+ * This Test class will test various functionality related to WxT-Drupal
+ */
 class WetKitArchivedWidgetTestCase extends WetKitWebTestCase {
-   public static function getInfo() {
+
+  /**
+   * Get information metadata.
+   */
+  public static function getInfo() {
     return array(
       'name' => 'Archived widget pane',
       'description' => 'Archived widget pane.',
-      'group' => 'WetKit'
+      'group' => 'WetKit',
     );
   }
 
-  function setUp() {
+  /**
+   * SetUp dependencies.
+   */
+  public function setUp() {
     parent::setUp(
       'page_manager',
       'panels'
@@ -24,7 +34,7 @@ class WetKitArchivedWidgetTestCase extends WetKitWebTestCase {
   /**
    * Test that the translation status pane works as expected.
    */
-  function testArchivedWidgetPane() {
+  public function testArchivedWidgetPane() {
     // Check that the plugin exists.
     ctools_include('plugins');
     $plugin = ctools_get_plugins('ctools', 'content_types', 'archived_widget');

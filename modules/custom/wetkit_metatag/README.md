@@ -1,14 +1,9 @@
 WetKit Metatags
 ===============
-HTML5 Metatag Support for WetKit
+Support for metatags that can assist in SEO for the website.
 
-Key Features (WetKit Metatags)
-
-The following metatags have been implemented according to WET standards
-* dcterms.title
-* dcterms.issued
-* dcterms.modified
-* dcterms.identifier
-* dcterms.language
-* dcterms.creator
-* dcterms.description
+Key Features
+* Implements standard metatags according to WET specifications
+* Custom bilingual tokens
+* Custom bilingual variables
+* Translation Support

@@ -102,12 +102,12 @@
                   <div id="gcwu-sig-in">
                     <?php if ($language->language == 'en'): ?>
                       <div id="gcwu-sig-eng" title="Government of Canada">
-                        <img src="<?php print(base_path() . libraries_get_path('wet-boew'));?>/dist/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada">
+                        <img src="<?php print (base_path() . libraries_get_path('wet-boew'));?>/dist/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada">
                       </div>
                     <?php endif;?>
                     <?php if ($language->language == 'fr'): ?>
                       <div id="gcwu-sig-fra" title="Gouvernement du Canada">
-                        <img src="<?php print(base_path() . libraries_get_path('wet-boew'));?>/dist/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada">
+                        <img src="<?php print (base_path() . libraries_get_path('wet-boew'));?>/dist/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada">
                       </div>
                     <?php endif;?>
                   </div>
@@ -115,10 +115,10 @@
                 <div id="gcwu-wmms">
                   <div id="gcwu-wmms-in">
                     <?php if ($language->language == 'en'): ?>
-                    <div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="<?php print(base_path() . libraries_get_path('wet-boew'));?>/dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada"></div>
+                    <div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="<?php print (base_path() . libraries_get_path('wet-boew'));?>/dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada"></div>
                     <?php endif;?>
                     <?php if ($language->language == 'fr'): ?>
-                    <div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="<?php print(base_path() . libraries_get_path('wet-boew'));?>/dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbole du gouvernement du Canada"></div>
+                    <div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="<?php print (base_path() . libraries_get_path('wet-boew'));?>/dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbole du gouvernement du Canada"></div>
                     <?php endif;?>
                   </div>
                 </div>
@@ -142,9 +142,7 @@
               <div id="gcwu-srchbx">
                 <h2><?php print t('Search'); ?></h2>
                 <?php if ($search_box): ?>
-                  <div id="gcwu-srchbx-in">
-                    <?php print $search_box; ?>
-                  </div>
+                  <?php print $search_box; ?>
                 <?php endif; ?>
               </div>
             </section>
@@ -178,6 +176,9 @@
   </div>
   <div id="wb-core">
     <div id="wb-core-in" class="equalize">
+      <?php if (isset($search_indexing_start)): ?>
+        <?php print $search_indexing_start; ?>
+      <?php endif; ?>
       <<?php print $tag; ?> id="main-content">
         <?php print $messages; ?>
         <!-- region: Main Content -->
@@ -185,12 +186,15 @@
           <?php print $content; ?>
         <?php endif; ?>
       </<?php print $tag; ?>>
+      <?php if (isset($search_indexing_stop)): ?>
+        <?php print $search_indexing_stop; ?>
+      <?php endif; ?>
     </div>
   </div>
   <div id="wb-foot">
     <div id="wb-foot-in">
       <footer>
-        <h2><?php print t('Footer'); ?></h2>
+        <h2 id="wb-nav"><?php print t('Footer'); ?></h2>
         <nav role="navigation">
           <div id="gcwu-sft">
             <h3><?php print t('Site Footer'); ?></h3>

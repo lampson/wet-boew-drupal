@@ -3,7 +3,7 @@
  * @file
  * Adaptivetheme panel pane template.
  *
- * This template has block type classes to they react to styles applied to blocks,
+ * This template has block type classes that react to styles applied to blocks,
  * saving the trouble of having to style multiple selectors to target blocks
  * and panel panes. This template also makes use the attributes arrays for the
  * wrapper and content wrapper.
@@ -37,9 +37,15 @@
     <?php endif; ?>
 
     <?php print render($title_prefix); ?>
+
     <?php if ($title): ?>
-      <h2<?php print $title_attributes; ?>><?php print $title; ?></h2>
+      <?php if($display->title_pane == $pane->pid) : ?>
+        <h1 id="wb-cont"><?php print $title; ?></h1>
+      <?php else : ?>
+        <h2<?php print $title_attributes; ?>><?php print $title; ?></h2>
+      <?php endif; ?>
     <?php endif; ?>
+
     <?php print render($title_suffix); ?>
 
     <?php if ($feeds): ?>

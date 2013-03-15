@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Attaches the behaviors for the WetKit Widgets module.
+ */
+
 Drupal.settings.tabbed_interface_settings = Drupal.settings.tabbed_interface_settings || {};
 
 (function ($) {
@@ -6,12 +11,12 @@ Drupal.settings.tabbed_interface_settings = Drupal.settings.tabbed_interface_set
    */
  Drupal.behaviors.wetkitTabbed_Interface = {
    attach: function (context, settings) {
-     if ($('.ipe_tabs_interface').length) {
+     if ($('.ipe_tabs_interface .tabs').length) {
       var loading_finished = 'wb-loaded';
       $(document).on(loading_finished, function () {
 
       });
-      pe.wb_load({'dep': ['resize', 'equalheights'], 'plugins': {'tabbedinterface': $(".ipe_tabs_interface", context)}}, loading_finished);
+      pe.wb_load({'plugins': {'tabbedinterface': $(".ipe_tabs_interface", context)}}, loading_finished);
      }
    }
  }

@@ -1,7 +1,11 @@
 <?php
+/**
+ * @file
+ * Code for the wetkit_widgets module.
+ */
 
-include_once('wetkit_widgets.features.inc');
-include_once('wetkit_widgets.plugins.inc');
+include_once 'wetkit_widgets.features.inc';
+include_once 'wetkit_widgets.plugins.inc';
 
 /**
  * Implements hook_apps_app_info().
@@ -13,7 +17,7 @@ function wetkit_widgets_apps_app_info() {
 }
 
 /**
- * Configuration Form for WetKit Magic
+ * Configuration Form for WetKit Magic.
  */
 function wetkit_widgets_configure_form($form, &$form_state) {
   $form = array();
@@ -38,30 +42,10 @@ function wetkit_widgets_ctools_plugin_directory($module, $plugin) {
 /**
  * Implements hook_field_widget_form_alter().
  *
- * Create default values on fieldable_panels_pane fields when appropriate. 
+ * Create default values on fieldable_panels_pane fields when appropriate.
  */
 function wetkit_widgets_field_widget_form_alter(&$element, &$form_state, $context) {
-  // Determine if we should use demo content.
-  $use_default_content = variable_get('panopoly_widgets_enable_default_content', 1);
-  if (!empty($use_default_content) && empty($element['#default_value']) && $context['instance']['entity_type'] == 'fieldable_panels_pane') {
 
-    // Do a switch on field type and set #default_values. Also (conditionally) stuff $form_state values so previews work correctly.
-    switch($context['field']['type']) {
-      case 'wetkit_tabbed_interface':
-        $element['title']['#default_value'] = 'Tabbed Interface 1';
-        $element['link']['#default_value'] = 'http://drupal.org';
-        $element['description']['#default_value'] = 'Sample description content for the WetKit Tabbed Interface fieldable panel pane.';
-        
-        if (empty($form_state['values'][$context['field']['field_name']][$context['langcode']][0])) {
-          $form_state['values'][$context['field']['field_name']][$context['langcode']][0] = array(
-            'title' => $element['title']['#default_value'],
-            'link' => $element['link']['#default_value'],
-            'description' => $element['description']['#default_value'],
-          );
-        }
-        break;
-    }
-  }
 }
 
 /**
@@ -69,22 +53,10 @@ function wetkit_widgets_field_widget_form_alter(&$element, &$form_state, $contex
  */
 function wetkit_widgets_form_alter(&$form, &$form_state, $form_id) {
 
-  if (variable_get('panopoly_widgets_enable_default_content', 1)) {
-    $clicked_button = empty($form_state['clicked_button']['#value']) ? '' : $form_state['clicked_button']['#value'];
-    if ($form_id == 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form' && ($clicked_button == 'Update Preview' || ($form_state['op'] == 'add' && empty($form_state['input']['form_build_id'])))) {
-
-      // Quick modification to get the spotlight to render correctly with preview content
-      if ($form_state['op'] == 'add' && empty($form_state['input']['form_build_id']) && !empty($form_state['field']['field_tabbed_interface'])) {
-        $form_state['values']['field_tabbed_interface']['und'][0]['fid'] = variable_get('wetkit_widgets_default_tabbed_interface_fid', NULL);
-        $form['field_tabbed_interface']['und'][0]['fid']['#default_value'] = variable_get('wetkit_widgets_default_tabbed_interface_fid', NULL);
-      }
-    }
-  }
 }
 
 /**
- * Implement the "Content Settings" fieldset in a pre-render. This fixes issues with image caused by initially
- * doing this in a form_alter.
+ * Implement the "Content Settings" fieldset in a pre-render.
  *
  * @see http://drupal.org/node/1567704
  */
@@ -116,7 +88,7 @@ function wetkit_widgets_fieldable_panel_pane_pre_render($element) {
  */
 function wetkit_widgets_entity_info_alter(&$entity_info) {
 
-  // Tabbed Interface
+  // Tabbed Interface.
   $entity_info['fieldable_panels_pane']['bundles']['tabbed_interface'] = array(
     'label' => t('Add tabbed interface'),
     'pane category' => t('WetKit'),
@@ -129,11 +101,10 @@ function wetkit_widgets_entity_info_alter(&$entity_info) {
       'access arguments' => array('administer fieldable panels panes'),
     ),
   );
-
 }
 
 /**
- * Implementation hook_theme_registry_alter()
+ * Implements hook_theme_registry_alter().
  */
 function wetkit_widgets_theme_registry_alter(&$theme_registry) {
   $mod_path = drupal_get_path('module', 'wetkit_widgets') . '/templates';
@@ -152,6 +123,18 @@ function wetkit_widgets_theme($existing, $type, $theme, $path) {
       'template'  => 'templates/fieldable_panels_pane/wetkit-widgets-fieldable-panels-pane',
       'path' => drupal_get_path('module', 'wetkit_widgets'),
     ),
+    'wetkit_widgets_file_video' => array(
+      'variables' => array(
+        'files' => array(),
+        'controls' => TRUE,
+        'autoplay' => FALSE,
+        'loop' => FALSE,
+        'muted' => FALSE,
+        'width' => NULL,
+        'height' => NULL,
+      ),
+      'file' => 'wetkit_widgets.theme.inc',
+    ),
     'wetkit_tab_interface_view' => array(
       'variables' => array(
         'items' => NULL,
@@ -160,4 +143,28 @@ function wetkit_widgets_theme($existing, $type, $theme, $path) {
       ),
     ),
   );
+}
+
+/**
+ * Implements hook_file_default_types().
+ */
+function wetkit_widgets_file_default_types() {
+  $types = array();
+
+  // WetKit Video.
+  $types['wetkit_video'] = (object) array(
+    'api_version' => 1,
+    'type' => 'wetkit_video',
+    'label' => t('WetKit Video'),
+    'description' => t('A <em>WetKit Video</em> file is a moving visual recording using the WET video player.'),
+    'mimetypes' => array(
+      'video/mp4',
+      'video/ogg',
+    ),
+    'streams' => array(
+      'public',
+    ),
+  );
+
+  return $types;
 }

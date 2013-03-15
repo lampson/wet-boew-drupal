@@ -1,3 +1,9 @@
+<?php
+/**
+ * @file
+ * WetKit Rubik page.tpl.php implementation
+ */
+?>
 <div id='branding'><div class='limiter clearfix'>
     <?php if (isset($breadcrumb)): ?>
       <div class='breadcrumb clearfix'><?php print $breadcrumb ?></div>
@@ -19,7 +25,9 @@
     <?php print render($title_prefix); ?>
     <h1 class='page-title <?php print $page_icon_class ?>'>
       <?php if (!empty($page_icon_class)): ?><span class='icon'></span><?php endif; ?>
-      <?php if ($title) print $title ?>
+      <?php if ($title): ?>
+        <?php print $title ?>
+      <?php endif; ?>
     </h1>
     <?php if ($action_links): ?>
       <ul class='action-links links clearfix'><?php print render($action_links) ?></ul>
@@ -33,9 +41,13 @@
 
 <div id='page' class="clearfix">
   <div id='main-content' class='limiter'>
-    <?php if (isset($page['help'])) print render($page['help']) ?>
+    <?php if (isset($page['help'])): ?>
+      <?php print render($page['help']) ?>
+    <?php endif; ?>
     <div id='content' class='page-content clearfix'>
-      <?php if (!empty($page['content'])) print render($page['content']) ?>
+      <?php if (!empty($page['content'])): ?>
+        <?php print render($page['content']) ?>
+      <?php endif; ?>
     </div>
   </div>
   <?php if (isset($page['sidebar_first'])): ?>
