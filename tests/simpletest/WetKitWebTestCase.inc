@@ -11,8 +11,7 @@ class WetKitWebTestCase extends DrupalWebTestCase {
   protected $testFiles = array();
 
   /**
-   * This setUp properly works without warnings when using another installation
-   * profile than testing.
+   * This setUp properly works without warnings.
    */
   protected function setUp() {
     $profile = drupal_get_profile();
@@ -27,19 +26,18 @@ class WetKitWebTestCase extends DrupalWebTestCase {
   /**
    * Clear the test files array between tests.
    */
-  function tearDown() {
+  protected function tearDown() {
     $this->testFiles = array();
     parent::tearDown();
   }
 
   /**
    * This is a hack to be able to call any method within the test case class.
-   * This might seems like something horrible, but it actually let's us separate
-   * functionality in a a sane way.
-   * @param $method
+   *
+   * @param string $method
    *   The method to call
-   * ...
-   * the arguments to provide.
+   * @param array $args
+   *   The arguments to provide.
    */
   public function callTestCaseFunction($method, $args) {
     return call_user_func_array(array($this, $method), $args);
@@ -48,14 +46,14 @@ class WetKitWebTestCase extends DrupalWebTestCase {
   /**
    * A sane version of DrupalWebTestCase::drupalLogin().
    */
-  function drupalLogin(stdClass $user) {
+  public function drupalLogin(stdClass $user) {
     if ($this->loggedInUser) {
       $this->drupalLogout();
     }
 
     $edit = array(
       'name' => $user->name,
-      'pass' => $user->pass_raw
+      'pass' => $user->pass_raw,
     );
     $this->drupalPost('user', $edit, t('Log in'));
     // The user should be redirected to it's profile page.
@@ -67,10 +65,13 @@ class WetKitWebTestCase extends DrupalWebTestCase {
 
   /**
    * Grant a series of roles to particular user.
-   * @param stdClass $user a user object
-   * @param array roles an array of role names.
+   *
+   * @param stdClass $user
+   *   A user object.
+   * @param array $roles
+   *   An array of role names.
    */
-  function grantRoles($user, array $roles) {
+  public function grantRoles($user, array $roles) {
     $roles_by_id = user_roles();
     foreach ($roles as $role) {
       $role_id = array_search($role, $roles_by_id);
@@ -91,11 +92,15 @@ class WetKitWebTestCase extends DrupalWebTestCase {
   /**
    * Assert that a a particular format exists
    * in a select element of input formats.
-   * @param $field a form field.
-   * @param $format a format to check for.
-   * @param $message the message to display.
+   *
+   * @param array $field
+   *   A form field.
+   * @param string $format
+   *   A format to check for.
+   * @param string $message
+   *   The message to display.
    */
-  function assertFormat($field, $format, $message = NULL) {
+  protected function assertFormat($field, $format, $message = NULL) {
     if (empty($message)) {
       $message = "The format $format exists.";
     }
@@ -105,12 +110,15 @@ class WetKitWebTestCase extends DrupalWebTestCase {
   /**
    * Assert that a a particular format isn't available
    * in a select element of input formats.
-   * @param $field a form field.
-   * @param $format a format to check for.
-   * @param $message the message to display.
+   *
+   * @param array $field
+   *   A form field.
+   * @param string $format
+   *   A format to check for.
+   * @param string $message
+   *   The message to display.
    */
-
-  function assertNoFormat($field, $format, $message = NULL) {
+  protected function assertNoFormat($field, $format, $message = NULL) {
     if (empty($message)) {
       $message = "The format $format doesn't exist.";
     }
@@ -150,11 +158,17 @@ class WetKitWebTestCase extends DrupalWebTestCase {
  */
 abstract class TestHelper {
   protected $testCase;
-  function __construct($test_case) {
+  /**
+   * The default constructor for the test case.
+   */
+  protected function __construct($test_case) {
     $this->testCase = $test_case;
   }
 
-  function __call($name, $arguments) {
+  /**
+   * Custom callTestCaseFunction.
+   */
+  protected function __call($name, $arguments) {
     return $this->testCase->callTestCaseFunction($name, $arguments);
   }
 }

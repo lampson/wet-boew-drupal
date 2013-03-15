@@ -1,13 +1,11 @@
 WetKit Web Usability
 ====================
-Foundational Module for most of the functionality related to the Web Experience Toolkit
+Foundational Module for most of the functionality related to the WET jQuery Framework
 
-Key Features (WetKit Web Usability)
-* Administrative Pages
-* Basic Views
+Key Features
+* Integration with WET
 * Default Installation of Menus (Menu Blocks) for WET
-* Integration of WET-BOEW's JS
 * Menus + Menu Block Support
-* Multilingual Boxes Support (soon to be replaced by Bean)
-* Metatag Support
+* CTools custom plugins
 * Panels Style Plugins
+* Translation Support

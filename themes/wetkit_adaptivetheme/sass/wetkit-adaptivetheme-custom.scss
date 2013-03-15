@@ -76,6 +76,36 @@ ul {
 }
 
 /*
+ * Drupal Contrib: Diff
+ */
+
+.page-node-revisions,
+.page-node-moderation {
+  #block-system-main {
+    .diff-section-title {
+      margin: 0px 10px; 
+      font-size: 12px; 
+      padding: 5px; 
+      background-color: #eee;
+      border: 1px solid #d4d4d4;
+    }
+    table { 
+      &.diff {
+        width: auto;
+        table-layout: auto; 
+      }
+      &.diff-revisions {
+        margin: 0px;
+        .error {color: #000;}
+        .diff-revision {
+          td.revision-current {background: #aaffaa;}
+        }
+      }      
+    }
+  }
+}
+
+/*
  * Drupal Contrib: Workbench
  */
 
@@ -156,6 +186,12 @@ fieldset.custom_search-popup {
  * Drupal Contrib: Panels
  */
 
+.panel-pane .block-content .node-unpublished {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
 .panels-ipe-placeholder h3 {
   background: none;
   padding: 0px;
@@ -210,6 +246,23 @@ div.panels-ipe-placeholder h4 {
  * WET-BOEW
  */
 
+#wb-aside #gcwu-priorities h2 {
+  color: #333;
+  font-weight: 400;
+  border: 0;
+  margin-bottom: 5px;
+  font-size: 1.6em;
+}
+
+#wb-main-in #gcwu-connect {
+  margin-left: 0px;
+  h2 {
+    font-weight: 400;
+    font-size: 1.6em;
+    margin-top: 6px;
+  }
+}
+
 .wb-sec-def .panel-pane .wet-menu-block {
   margin-bottom: 10px;
 }
@@ -239,6 +292,10 @@ div.panels-ipe-placeholder h4 {
   .mb-menu {
     z-index: 98 !important;
   }
+}
+
+#gcwu-srchbx-in {
+  display: inline;
 }
 
 #gcwu-srchbx label {
@@ -309,4 +366,9 @@ div.panels-ipe-placeholder h4 {
 
 .node-type-wetkit-documentation .block-content #tabs {
   margin-bottom: 10px;
+}
+
+#gcwu-sft li a[href^="mailto:"] {
+  background-image: none;
+  padding-left: 0px;
 }

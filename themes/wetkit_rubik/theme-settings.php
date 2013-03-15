@@ -1,16 +1,12 @@
 <?php
+
 /**
  * @file
  * Theme settings for wetkit_rubik.
  */
 
 /**
- * Implements hook_form_system_theme_settings_alter() function.
- *
- * @param $form
- *   Nested array of form elements that comprise the form.
- * @param $form_state
- *   A keyed array containing the current state of the form.
+ * Implements hook_form_system_theme_settings_alter().
  */
 function wetkit_rubik_form_system_theme_settings_alter(&$form) {
   // Work-around for a core bug affecting admin themes. See issue #943212.

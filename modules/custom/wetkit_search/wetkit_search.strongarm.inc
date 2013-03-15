@@ -126,7 +126,7 @@ function wetkit_search_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'custom_search_blocks_1_custom_paths_region';
-  $strongarm->value = 'popup';
+  $strongarm->value = 'block';
   $export['custom_search_blocks_1_custom_paths_region'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -147,7 +147,7 @@ function wetkit_search_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'custom_search_blocks_1_label';
-  $strongarm->value = 'Refine your Search';
+  $strongarm->value = 'Search website';
   $export['custom_search_blocks_1_label'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -169,10 +169,9 @@ function wetkit_search_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'custom_search_blocks_1_node_types';
   $strongarm->value = array(
-    'article' => 0,
-    'documentation' => 0,
-    'main_slider' => 0,
-    'page' => 0,
+    'wetkit_page' => 0,
+    'wetkit_page_other' => 0,
+    'wetkit_documentation' => 0,
   );
   $export['custom_search_blocks_1_node_types'] = $strongarm;
 
@@ -181,10 +180,9 @@ function wetkit_search_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'custom_search_blocks_1_node_types_excluded';
   $strongarm->value = array(
-    'article' => 0,
-    'documentation' => 0,
-    'main_slider' => 0,
-    'page' => 0,
+    'wetkit_page' => 0,
+    'wetkit_page_other' => 0,
+    'wetkit_documentation' => 0,
   );
   $export['custom_search_blocks_1_node_types_excluded'] = $strongarm;
 
@@ -194,7 +192,7 @@ function wetkit_search_strongarm() {
   $strongarm->name = 'custom_search_blocks_1_order';
   $strongarm->value = array(
     'search_box' => array(
-      'sort' => '-6',
+      'sort' => '-8',
       'region' => 'block',
     ),
     'criteria_or' => array(
@@ -211,15 +209,11 @@ function wetkit_search_strongarm() {
     ),
     'custom_paths' => array(
       'sort' => '-10',
-      'region' => 'popup',
-    ),
-    'submit_button' => array(
-      'sort' => '-8',
       'region' => 'block',
     ),
-    'content_types' => array(
-      'sort' => '-5',
-      'region' => 'popup',
+    'submit_button' => array(
+      'sort' => '-6',
+      'region' => 'block',
     ),
   );
   $export['custom_search_blocks_1_order'] = $strongarm;
@@ -229,7 +223,8 @@ function wetkit_search_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'custom_search_blocks_1_other';
   $strongarm->value = array(
-    'ds_search' => 0,
+    'advanced_help' => 0,
+    'file_entity' => 0,
     'user' => 0,
   );
   $export['custom_search_blocks_1_other'] = $strongarm;
@@ -238,8 +233,7 @@ function wetkit_search_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'custom_search_blocks_1_paths';
-  $strongarm->value = 'search/site/[key]|Search API
-search/node/[key]|Search Core';
+  $strongarm->value = 'search/site/[key]';
   $export['custom_search_blocks_1_paths'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -274,7 +268,7 @@ search/node/[key]|Search Core';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'custom_search_blocks_1_search_box_weight';
-  $strongarm->value = '-6';
+  $strongarm->value = '-8';
   $export['custom_search_blocks_1_search_box_weight'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -295,7 +289,7 @@ search/node/[key]|Search Core';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'custom_search_blocks_1_submit_button_weight';
-  $strongarm->value = '-8';
+  $strongarm->value = '-6';
   $export['custom_search_blocks_1_submit_button_weight'] = $strongarm;
 
   $strongarm = new stdClass();

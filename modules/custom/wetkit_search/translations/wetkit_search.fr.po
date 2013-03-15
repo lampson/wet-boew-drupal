@@ -1,5 +1,3 @@
-# $Id$
-#
 # French translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
@@ -16,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2012-12-03 22:51-0500\n"
-"PO-Revision-Date: 2012-12-03 22:51-0500\n"
+"POT-Creation-Date: 2013-02-09 20:37-0500\n"
+"PO-Revision-Date: 2013-02-09 20:37-0500\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +61,7 @@ msgstr "- Tous -"
 
 #: wetkit_search.views_default.inc:140;281
 msgid "Offset"
-msgstr "Compenser"
+msgstr "Décalage"
 
 #: wetkit_search.views_default.inc:141;282
 msgid "« first"
@@ -95,9 +93,9 @@ msgstr "Tout"
 
 #: wetkit_search.views_default.inc:148
 msgid "Database Search Results"
-msgstr "Résultats de la recherche database"
+msgstr "Résultats de la recherche de la base de données"
 
-#: wetkit_search.views_default.inc:149;290 plugins/content_types/facet/facet.inc:12 plugins/content_types/search_box/search_box.inc:17 plugins/content_types/search_current/search_current.inc:13
+#: wetkit_search.views_default.inc:149;290 plugins/content_types/facet/facet.inc:11 plugins/content_types/search_box/search_box.inc:17 plugins/content_types/search_current/search_current.inc:13
 msgid "Search"
 msgstr "Rechercher"
 
@@ -115,27 +113,27 @@ msgstr "WetKit de Recherche DB API de recherche d'index a été mis à jour"
 
 #: wetkit_search.info:0
 msgid "WetKit Search"
-msgstr "Recherche WetKit"
+msgstr "Recherche BOEW"
 
 #: wetkit_search.info:0
 msgid "Indexes and searches site content, Solr or otherwise."
-msgstr "Les index et le contenu du site, les recherches Solr ou autrement."
+msgstr "Index et recherche dans le contenu du site, Solr ou autre."
 
 #: wetkit_search.info:0
 msgid "WetKit"
-msgstr "WetKit"
+msgstr "BOEW"
 
 #: plugins/access/search_api_index.inc:9
 msgid "Search API Index"
-msgstr "API de recherche Index"
+msgstr "Index de l'API de recherche"
 
 #: plugins/access/search_api_index.inc:10
 msgid "Is the Search API index enabled?"
-msgstr "Est l'indice API de recherche activé?"
+msgstr "L'index de API de recherche est-il activé?"
 
 #: plugins/access/search_api_index.inc:37
 msgid "WetKit Search index is Enabled"
-msgstr "Index de recherche WetKit est Activé"
+msgstr "L'index de recherche BOEW est activé"
 
 #: plugins/access/solr.inc:9
 msgid "Solr"
@@ -143,25 +141,27 @@ msgstr "Solr"
 
 #: plugins/access/solr.inc:10
 msgid "Is Apache Solr running?"
-msgstr "Apache Solr est en cours d'exécution?"
+msgstr "Apache Solr est-il en cours d'exécution?"
 
 #: plugins/access/solr.inc:37
 msgid "Apache Solr is running"
-msgstr "Apache Solr est en marche"
+msgstr "Apache Solr est en cours d'exécution"
+
+#: plugins/content_types/facet/facet.inc:8
+msgid "Search Facets"
+msgstr "Rechercher les Facettes"
 
 #: plugins/content_types/facet/facet.inc:9
-msgid "Search Facets"
-msgstr "Facettes rechercher"
-
-#: plugins/content_types/facet/facet.inc:10
 msgid "The list of options available for a particular type of search facet"
-msgstr "La liste des options disponibles pour un type particulier de recherche facette"
+msgstr ""
+"La liste des options disponibles pour un type particulier de recherche "
+"facette"
 
-#: plugins/content_types/facet/facet.inc:11 plugins/content_types/search_box/search_box.inc:16 plugins/content_types/search_current/search_current.inc:12
+#: plugins/content_types/facet/facet.inc:10 plugins/content_types/search_box/search_box.inc:16 plugins/content_types/search_current/search_current.inc:12
 msgid "Keywords"
 msgstr "Mots-clés"
 
-#: plugins/content_types/facet/facet.inc:51
+#: plugins/content_types/facet/facet.inc:60
 msgid "Facet Type"
 msgstr "Type de Facet"
 
@@ -187,7 +187,11 @@ msgstr "Avancé"
 
 #: plugins/content_types/search_box/search_box.inc:104
 msgid "The advanced form may have additional options based upon the search type. For example the advanced content (node) search form will allow searching by node type and taxonomy term."
-msgstr "La forme avancée peut avoir des options supplémentaires en fonction du type de recherche. Par exemple, le formulaire de recherche avancée de contenu (noeud) vous allez pouvoir rechercher par type de nœud et terme de taxonomie."
+msgstr ""
+"Le formulaire avancé peut avoir des options supplémentaires en "
+"fonction du type de recherche. Par exemple, le formulaire de recherche "
+"avancée de contenu (noeud) vous allez pouvoir rechercher par type de "
+"nœud et terme de taxonomie."
 
 #: plugins/content_types/search_box/search_box.inc:110
 msgid "Path"
@@ -215,7 +219,7 @@ msgstr "Type manquant / cassé"
 
 #: plugins/content_types/search_box/search_box.inc:158
 msgid "@type search form"
-msgstr "Un formulaire de recherche @type"
+msgstr "Formulaire de recherche @type"
 
 #: plugins/content_types/search_current/search_current.inc:10
 msgid "Current search"
@@ -223,11 +227,15 @@ msgstr "Recherche actuelle"
 
 #: plugins/content_types/search_current/search_current.inc:11
 msgid "The count of results for current search."
-msgstr "Le décompte des résultats de la recherche actuelle."
+msgstr "Le nombre de résultats de la recherche actuelle."
+
+#: plugins/content_types/search_current/search_current.inc:39;44
+msgid "!count matched !keys"
+msgstr ""
 
 #: plugins/content_types/search_current/search_current.inc:39;44
 msgid "1 item"
 msgid_plural "@count items"
-msgstr[0] "1 élement"
+msgstr[0] "@count élement"
 msgstr[1] "@count éléments"
 

@@ -13,9 +13,10 @@ function wetkit_metatag_metatag_config_default_alter(array &$configs) {
     switch ($config->instance) {
       case 'global':
         $config->config += array(
+          'dcterms.creator' => array('value' => '[current-page:creator_default_value]'),
+          'dcterms.language' => array('value' => '[current-page:language_default_value]'),
+          'dcterms.subject' => array('value' => '[current-page:bilingual_default_value]'),
           'dcterms.title' => array('value' => '[current-page:title]'),
-          'dcterms.language' => array('value' => '[current-page:language]'),
-          'dcterms.creator' => array('value' => '[site-wide:creator]'),
         );
         break;
 
@@ -60,7 +61,6 @@ function wetkit_metatag_metatag_config_default_alter(array &$configs) {
 
 /**
  * Implements hook_metatag_info().
- * Dublin Core Elements taken from http://purl.org/dc/elements/1.1/.
  */
 function wetkit_metatag_metatag_info() {
   $info['groups']['dublin-core'] = array(
@@ -96,6 +96,7 @@ function wetkit_metatag_metatag_info() {
     'group' => 'dublin-core',
     'element' => array(
       '#theme' => 'wetkit_metatag',
+      '#schema' => variable_get('wetkit_metatag_subject_scheme'),
     ),
   );
   $info['tags']['dcterms.description'] = array(
@@ -241,7 +242,6 @@ function wetkit_metatag_metatag_info() {
 
 /**
  * Function that returns the DCMI type options.
- * Types taken from http://dublincore.org/documents/dcmi-type-vocabulary/.
  */
 function _wetkit_metatag_dcmi_type_vocabulary_options() {
   $options = array(

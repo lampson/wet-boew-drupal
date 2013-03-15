@@ -16,13 +16,6 @@ function wetkit_demo_menu_alter(&$items) {
 
 /**
  * Implements hook_ctools_plugin_directory().
- *
- * @param type $module
- *   The module the plugin resides in for CTools
- * @param type $plugin
- *   The plugins name to reference for CTools
- * @return type
- *   The plugins autodetected by CTools
  */
 function wetkit_demo_ctools_plugin_directory($module, $plugin) {
   return 'plugins/' . $plugin;
@@ -39,26 +32,5 @@ function wetkit_demo_ctools_plugin_directory($module, $plugin) {
 function wetkit_demo_menu_link_alter(&$item) {
   if (empty($item['path'])) {
     $item['path'] = $item['link_path'];
-  }
-}
-
-/**
- * Implements hook_init().
- */
-function wetkit_demo_init() {
-  //Set Flag
-  if ((variable_get('wetkit_demo_load', 1) == 1)) {
-    $result_en = db_query("SELECT * FROM {defaultcontent}");
-    foreach ($result_en as $record_en) {
-      $result_fr = db_query('SELECT 1 FROM {defaultcontent} WHERE name = :name', array(':name' => $record_en->name . '-fr'))->fetchField();
-      if ($result_fr) {
-          $record_fr = db_query('SELECT * FROM {defaultcontent} WHERE name = :name', array(':name' => $record_en->name . '-fr'))->fetchObject();
-          db_query('UPDATE {node} SET tnid = :tnid WHERE nid = :nid',
-            array( ':tnid' => $record_en->nid, ':nid' => $record_en->nid));
-          db_query('UPDATE {node} SET tnid = :tnid WHERE nid = :nid',
-            array( ':tnid' => $record_en->nid, ':nid' => $record_fr->nid));
-      }
-    }
-    variable_set('wetkit_demo_load', 0);
   }
 }

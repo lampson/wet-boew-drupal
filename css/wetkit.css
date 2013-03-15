@@ -5,7 +5,18 @@
 
 .in-maintenance input[type="image"] + label, .in-maintenance input[type="checkbox"] + label, .in-maintenance input[type="radio"] + label { display: inline; }
 
-.maintenance-page #logo { background: transparent url(../images/wetkit_icon_install.png) no-repeat top left; height: 0; overflow: hidden; padding-top: 180px; /* height of logo  */ width: 180px; /* width of logo  */ }
+.in-maintenance #edit-theme img { display: block; width: 275px; }
+.in-maintenance .messages { padding: 10px 10px 10px 10px; }
 
 /* Global Fixes */
-.krumo-footnote img { width: auto; }
+.krumo-footnote img { width: auto !important; }
+
+/* Media Browser */
+body.page-media-browser { min-width: auto; }
+
+.media-list-thumbnails li a { width: 100px; height: 100px; }
+.media-list-thumbnails .media-item { height: 100px; }
+.media-list-thumbnails .media-item img { width: auto; max-width: 90px; max-height: 90px; }
+.media-list-thumbnails .media-item .label-wrapper label { white-space: normal; word-wrap: break-word; line-height: 0; }
+
+.media-display-thumbnails .media-list-thumbnails .form-type-checkbox { bottom: 25px; left: 8px; width: 10px; border: none; }

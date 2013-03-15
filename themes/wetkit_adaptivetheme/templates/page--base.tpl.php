@@ -154,8 +154,11 @@
                 <!-- Messages and Help -->
                 <?php print $messages; ?>
                 <?php print render($page['help']); ?>
+                <?php if (isset($search_indexing_start)): ?>
+                  <?php print $search_indexing_start; ?>
+                <?php endif; ?>                    
                 <<?php print $tag; ?> id="main-content">
-                  <?php print render($title_prefix); // Does nothing by default in D7 core ?>
+                  <?php print render($title_prefix); ?>
                   <?php if ($title || $primary_local_tasks || $secondary_local_tasks || $action_links = render($action_links)): ?>
                     <header id="main-content-header">
                       <?php if ($title): ?>
@@ -184,8 +187,11 @@
                   <?php endif; ?>
                   <!-- Feed icons (RSS, Atom icons etc -->
                   <?php print $feed_icons; ?>
-                  <?php print render($title_suffix); // Prints page level contextual links ?>
+                  <?php print render($title_suffix); ?>
                 </<?php print $tag; ?>>
+                <?php if (isset($search_indexing_stop)): ?>
+                  <?php print $search_indexing_stop; ?>
+                <?php endif; ?>
                 <!-- region: Content Aside -->
                 <?php print render($page['content_aside']); ?>
               </div>
@@ -201,7 +207,7 @@
         <div id="wb-sec">
           <div id="wb-sec-in" style="min-height: 680px; ">
             <nav role="navigation">
-              <h2 id="wb-nav"><?php print t('Skip to side navigation'); ?></h2>
+              <h2 id="wb-side-nav"><?php print t('Skip to side navigation'); ?></h2>
               <div class="wb-sec-def">
                 <div id="sidebar-first" class="sidebar">
                   <?php print $sidebar_first; ?>
@@ -216,7 +222,7 @@
   <div id="wb-foot">
     <div id="wb-foot-in">
       <footer>
-        <h2><?php print t('Footer'); ?></h2>
+        <h2 id="wb-nav"><?php print t('Footer'); ?></h2>
         <nav role="navigation">
           <div id="base-sft">
             <h3><?php print t('Site Footer'); ?></h3>

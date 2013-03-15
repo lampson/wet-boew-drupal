@@ -2,28 +2,28 @@
 
 /**
  * @file
- * An installation file for Panopoly Widgets
+ * An installation file for Panopoly Widgets.
  */
-
-/**
- * Implements hook_install().
- */
-function wetkit_widgets_install() {
-  wetkit_widgets_save_default_file_data(drupal_get_path('module', 'wetkit_widgets') . '/default_content/wetkit_tabbed_interface.jpeg', 'wetkit_tabbed_interface.jpeg', 'tabbed_interface');
-}
 
 /**
  * Implements hook_uninstall().
  */
 function wetkit_widgets_uninstall() {
-
+  // Get global variable array.
+  global $conf;
+  foreach (array_keys($conf) as $key) {
+    // Find variables that have the module prefix.
+    if (strpos($key, 'wetkit_widgets_') === 0) {
+      variable_del($key);
+    }
+  }
 }
 
 /**
  * Implements hook_field_schema().
  */
 function wetkit_widgets_field_schema($field) {
-  //Tabbed Interface Widget
+  // Tabbed Interface Widget.
   if ($field['type'] == 'wetkit_tabbed_interface') {
     $schema['columns']['title'] = array(
       'type' => 'varchar',
@@ -74,23 +74,5 @@ function wetkit_widgets_field_schema($field) {
  * Implements hook_update_N().
  */
 function wetkit_widgets_update_7001(&$sandbox) {
-  wetkit_widgets_save_default_file_data(drupal_get_path('module', 'wetkit_widgets') . '/default_content/wetkit_tabbed_interface.jpeg', 'wetkit_tabbed_interface.jpeg', 'tabbed_interface');
-}
-
-/**
- * Helper function to save default file data.
- */
-function wetkit_widgets_save_default_file_data($filepath, $filename, $type) {
-  $fid = variable_get('wetkit_widgets_default_' . $type . '_fid', NULL);
-  if (empty($fid)) {
-    $file = fopen($filepath, 'r');
-    $file_raw = fread($file, filesize($filepath));
-    $file_entity = file_save_data($file_raw, 'public://' . $filename);
-
-    if (!empty($file_entity->fid)) {
-      variable_set('wetkit_widgets_default_' . $type . '_fid', $file_entity->fid);
-
-      return $file_entity->fid;
-    }
-  }
+  // This section has been removed.
 }
